@@ -1,0 +1,7 @@
+PORT=6060
+CLIENT_ORIGIN_URL=http://localhost:4040
+AUTH0_AUDIENCE=https://hello-world.example.com
+AUTH0_DOMAIN=https://dev-milana.au.auth0.com    
+MONGO_DB_CONNECTION_STRING =mongodb://admin:password@localhost:27017
+MONGO_DB_NAME=CRUD
+PUBLIC_URL=http://localhost:4040

@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const autoIncrement = require('mongoose-auto-increment');
 import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
@@ -14,6 +16,16 @@ if (!(process.env.PORT && process.env.CLIENT_ORIGIN_URL)) {
     "Missing required environment variables. Check docs for more info."
   );
 }
+
+const mconnectionstring = process.env.MONGO_DB_CONNECTION_STRING;
+const databaseName = process.env.MONGO_DB_NAME;
+const mongoURL = `${mconnectionstring}/${databaseName}`;
+
+mongoose.connect(mongoURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 
 const PORT = parseInt(process.env.PORT, 10);
 const CLIENT_ORIGIN_URL = process.env.CLIENT_ORIGIN_URL;
@@ -48,14 +60,15 @@ app.use((req, res, next) => {
 });
 app.use(nocache());
 
-app.use(
+  app.use(
   cors({
     origin: CLIENT_ORIGIN_URL,
-    methods: ["GET"],
-    allowedHeaders: ["Authorization", "Content-Type"],
+   methods: ["GET"],
+   allowedHeaders: ["Authorization", "Content-Type"],
     maxAge: 86400,
   })
 );
+
 
 app.use("/api", apiRouter);
 apiRouter.use("/messages", messagesRouter);

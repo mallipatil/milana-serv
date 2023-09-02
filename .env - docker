@@ -1,0 +1,6 @@
+PORT=6060
+CLIENT_ORIGIN_URL=https://dev.milana.tech
+AUTH0_AUDIENCE=https://hello-world.example.com
+AUTH0_DOMAIN=https://dev-milana.au.auth0.com
+MONGO_DB_CONNECTION_STRING=mongodb://predictiveresearch:UX55dPf0Z1bymZkBCKM8ubeQNzrGNcNaJ2nABxJvSvJp48w5efoTSsmPQvBX3k2l5BHZ92UfRDItACDb74BRuw==@predictiveresearch.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@predictiveresearch@
+MONGO_DB_NAME=CRUD

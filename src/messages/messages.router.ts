@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import express from "express";
 import {
   checkRequiredPermissions,
@@ -8,19 +9,27 @@ import {
   getAdminMessage,
   getProtectedMessage,
   getPublicMessage,
+  PostProtectedMessage
 } from "./messages.service";
 
 export const messagesRouter = express.Router();
 
-messagesRouter.get("/public", (req, res) => {
-  const message = getPublicMessage();
+messagesRouter.get("/public", async(req, res) => {
+  const message = await getPublicMessage(req,res);
 
   res.status(200).json(message);
 });
 
-messagesRouter.get("/protected", validateAccessToken, (req, res) => {
-  const message = getProtectedMessage();
+messagesRouter.get("/protected", validateAccessToken, async (req,res) => {
+  const message = await getProtectedMessage();
+  console.log('Message in Router:', message);
+  res.status(200).json(message);
+});
 
+messagesRouter.post("/protected", validateAccessToken, async (req: Request, res: Response) => {
+  console.log('Message in received in Router:', req);
+  const message = await PostProtectedMessage(req, res);
+  console.log('Message in Router:', message);
   res.status(200).json(message);
 });
 
