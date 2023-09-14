@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const autoIncrement = require('mongoose-auto-increment');
 import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
